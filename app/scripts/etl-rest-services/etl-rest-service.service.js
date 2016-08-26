@@ -51,7 +51,8 @@
       synchronizeEIDPatientLabResults:synchronizeEIDPatientLabResults,
       getPatientFlowData: getPatientFlowData,
       postOrderToEid: postOrderToEid,
-      invalidateUserSession: invalidateUserSession
+      invalidateUserSession: invalidateUserSession,
+      getReportByName: getReportByName
     };
     return serviceDefinition;
 
@@ -539,7 +540,18 @@
         });
 
     }
+    function getReportByName(reportName, params, successCallback, failedCallback) {
+      var resource = getResource('get-report-by-report-name');
+      return resource.get(params).$promise
+        .then(function (response) {
+          successCallback(response);
+        })
+        .catch(function (error) {
+          failedCallback('Error processing request', error);
+          console.error(error);
+        });
 
+    }
     function getIndicatorsSchema(report, successCallback, failedCallback, startIndex, limit) {
       var resource = getResource('indicators-schema');
 
