@@ -1,5 +1,12 @@
 <form name="personForm">
   <div class="form-group">
+    <div class="form-group" ng-class="{ 'has-error': personForm.gender.$touched && personForm.gender.$invalid }">
+      <label for="gender">Select Gender</label>
+      <select class="form-control" name="gender" ng-model="gender" id="gender" ng-options="opt as opt for opt in gender" >Gender</select>
+        <div ng-messages="personForm.gender.$error">
+        <div class="help-block" ng-message="required">Gender is required</div>
+        </div>
+    </div>
     <label for="updateIsPersonDeadSelect">Has patient died?</label>
     <select class="form-control" ng-model="dead" id="updateIsPersonDeadSelect" ng-options="opt as opt.label for opt in isDeadOptions" placeholder={{dead}}>
     </select>

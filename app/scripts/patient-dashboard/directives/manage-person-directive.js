@@ -13,7 +13,8 @@
         patientUuid: '@',
         dead:  '@',
         deathDate:  '@',
-        causeOfDeath:  '@'
+        causeOfDeath:  '@',
+        gender: '@'
       },
       controller: updatePersonController,
       link: linkFn
@@ -28,6 +29,8 @@
     $scope.setCauseOfDeath = setCauseOfDeath;
     $scope.updatePerson = updatePerson;
     $scope.isDeadOptions = [{ label: 'Yes', val: true }, { label: 'No', val: false }];
+    $scope.isgender = ['M','F'];
+    $scope.gender= patient.gender();
     $scope.dead = $scope.isDeadOptions[1];
     $scope.causesOfDeath = [];
     $scope.causeOfDeath = $scope.causesOfDeath[0];
@@ -62,8 +65,10 @@
       var personPayload = {
           dead: $scope.dead.val,
           deathDate: $scope.deathDate,
-          causeOfDeath: $scope.causeOfDeath
+          causeOfDeath: $scope.causeOfDeath,
+          gender: $scope.gender
       };
+      console.log("GENDER=================>"+gender);
       console.log('Person Payload:',personPayload);
       var person = {
         uuid: function() {
